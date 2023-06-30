@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Aling Meding's Special Kakanin</title>
+  <link rel="icon" type="image/x-icon" href="https://i.imgur.com/LwlehUO.png">
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+      
+    .UBox {
+      top: 0;
+      position: fixed;
+      z-index: 100;
+      height: 80px;
+      width: 100%;
+      background-color: orangered;
+      float: left;
+    }
+
+    ul {
+      margin-left: 20px;
+      float: left;
+      list-style-type: none;
+      font-family: sans-serif;
+    }
+
+    ul li {
+      display: inline-block;
+      margin-top: 30px;
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: wheat;
+      padding: 20px 10px;
+      font-size: 15px;
+      font-weight: bold;
+      transition: 0.6s ease;
+    }
+
+    ul li a:hover {
+      background-color: rgba(103, 103, 238, 0.438);
+      padding: 20px 10px;
+      color: #008037;
+    }
+
+    .Logo {
+      margin-left: 45px;
+      float: left;
+      height: 70px;
+      width: 70px;
+      padding-left: 70px;
+      padding-top: 3px;
+    }
+
+    .USearchBar {
+      box-sizing: border-box;
+      margin-top: 18px;
+      margin-right: 60px;
+      display: flex;
+      justify-content: right;  
+      float: right; 
+    }
+
+    .input {
+      padding: 10px;
+      font-size: 17px;        
+      border: 0px;
+      float: right;
+      width: 200px;
+      color: green;
+      background: wheat;
+      shape-margin: 1px;
+    }
+
+    button {
+      background: #f5deb3;
+      color: #f5deb3;
+      text-decoration: none ;
+      padding: 4px;
+      border: 0px;
+    }
+
+    button:hover {
+      background-color: orangered;
+      border: 1px solid none;        
+      padding: 4px;
+    }
+
+    .SearchBar {
+      margin: 0px;
+      float: right;        
+      width: 10px;      
+      padding: 10px;      
+      background: wheat;
+      color: wheat;     
+      font-size: 17px;     
+      border: 1px solid wheat;     
+      cursor: pointer;  
+    }
+
+    .MBox {    
+      background-color: wheat;
+      width: 100%;
+      height: 700px;
+    }
+
+    .picture-mbox1 {       
+      margin: 100px;        
+      margin-right: 0px;    
+      background-color: wheat;    
+      float: left;    
+      height: 328px;    
+      width: 259px;
+      margin-top: 150px;  
+      margin-left: 50px;       
+    }
+
+    .pic-slide{
+      display: none;
+    }
+
+    .pic1 {
+      height: 328px;
+      width: 259px;
+      float: left;
+      margin-left: 40px;
+      padding-bottom: 10px;
+    }
+
+    .pic2, .pic2-1, .pic3, .pic3-1 {
+      height: 259px;
+      width: 259px;
+      float: left;
+      margin-left: 40px;
+      padding-bottom: 10px;
+    }
+
+    .pic4 {
+      height: 230px;
+      width: 259;
+      float: left;
+      margin-left: 40px;
+      padding-bottom: 10px;
+    }
+    .description, .description2, .description3 {
+      margin-left: -32px;      
+      font-size: 15px;
+      position: absolute;
+      width: 259px;
+      text-align: justify;
+    }
+
+    .title, .title2, .title3 {
+      margin-left: 70px;
+      text-align: center;
+    }
+    .description,.description2, .description3, .title, .title2, .title3  {
+      color: green;
+      margin-top: 5px;
+    }
+
+    .Mtext1 {
+      color: green;
+      font-size: 30px;
+      padding: 8px 12px;
+      margin-left: 110px;
+    }
+
+    .previous, .previous2, .previous3, .next, .next2, .next3 {
+      cursor: pointer;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    .previous, .previous2, .previous3 {
+      padding-right: 30px;
+      margin-left: 80px;
+      border-radius: 3px 0 0 3px;
+    }
+    .next, .next2, .next3 {
+      margin-left: 20px;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 10px;        
+      width: 10px;        
+      margin: 0 2px;      
+      background-color: brown;      
+      border-radius: 50%;      
+      display: inline-block;
+      text-align: center;   
+      transition: background-color 0.6s ease;      
+    }
+
+    span.active, .dot:hover, .dot2:hover, .dot3:hover {
+      background-color: green;
+    }
+
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    .picture-mbox2 {       
+      margin: 100px;           
+      background-color: wheat;    
+      float: left;    
+      height: 328px;    
+      width: 259px;    
+      margin-left: 190px;
+      margin-top: 157px;    
+    }
+
+    .Mtext2 {
+      color: green;
+      font-size: 25px;
+      padding: 8px 12px;
+      margin-left: 32px;
+      text-align: center;
+      margin-right: -50px;
+    }
+
+    .dot2 {
+      cursor: pointer;
+      height: 10px;        
+      width: 10px;        
+      margin: 0 2px;      
+      background-color: brown;      
+      border-radius: 50%;      
+      display: inline-block;
+      text-align: center;   
+      transition: background-color 0.6s ease;      
+    }
+
+    .picture-mbox3 {       
+      margin: 100px;           
+      background-color: wheat;    
+      float: right;    
+      height: 328px;    
+      width: 259px;    
+      margin-left: 0px;
+      margin-right: 150px;
+      margin-top: 157px;    
+    }
+
+    .dot3 {
+      cursor: pointer;
+      height: 10px;        
+      width: 10px;        
+      margin: 0 2px;      
+      background-color: brown;      
+      border-radius: 50%;      
+      display: inline-block;
+      text-align: center;   
+      transition: background-color 0.6s ease;      
+    }
+
+    .MBox:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    @keyframes fade {
+      from {opacity: .4}
+      to {opacity: 1}
+    }
+
+    .BBox {
+      height: 110px;
+      width: 100%;
+      background-color: orangered;
+    }
+
+    .BLogo{
+      height: 100px;
+      margin-left: 600px;
+      margin-top: 5px;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+      .UBox {
+        width: 100%;
+        top: 0;
+        height: 80px;
+      }
+
+      ul {
+      float: left;
+      }
+
+      ul li a {
+        margin-left: -5px;
+        font-size: 10px;
+      }
+
+      .Logo {
+        float: left;
+        margin-top: 3px;
+        height: 60px;
+        right: 0px;
+        margin-left: -35px ;
+      }
+
+      .USearchBar {
+        margin-top: 20px;
+        height: 40px;
+        right: -50px;
+        margin-right: 30px;
+      }
+
+      .SearchBar {
+        width: 5px;
+      } 
+
+      .input  {
+        width: 150px;
+      }
+
+      .MBox {
+        width: 750px;
+        height: 90%;
+      }
+
+      .picture-mbox1 {
+        width: 650px;
+        padding: 0px;
+        margin-left: 80px;
+      }
+
+      .picture-mbox2 {
+        margin-left: 215px;
+      }
+      
+      .dot {
+        margin-left: 10px;
+        position: inherit;
+      }
+
+      .previous, .next {
+        display: inline-block;
+        margin-top: 320px;
+        margin-left: -230px;
+      }
+
+      .next {
+        margin-left: 30px;
+      }
+
+      .title {
+        margin-left: -25px;
+        margin-top: 0px;
+        text-align: center;
+      }
+
+      .description {
+        text-align: center;
+        margin-left: 200px;
+      }
+
+      .Mtext1 {
+        margin-left: -50px;
+        text-align: center;
+      }
+
+      .pic1, .pic2, .pic3 {
+        margin-left: 175px;
+      }
+
+      .picture-mbox3 {
+        margin-top: 50px;
+        margin-right: 280px;
+      }
+
+      .BBox {
+        width: 750px;
+        height: 160px;
+      }
+
+      .BLogo {
+        margin-left: 350px;
+        margin-top: 30px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="Upper" class="UBox">
+    <div id="U2" class="UButton" >
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Branches</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+      
+    <div class="ULogo">
+      <div class="Logo">
+        <img class="Logo" src="https://i.imgur.com/LwlehUO.png" alt="Aling Meding's Logo">
+      </div>
+    </div>
+
+    <div id="U1" class="USearchBar">
+      <input class="input" type="text" placeholder=" ">
+      <button class="UButton" type="submit">
+        <img class="SearchBar" src="https://i.imgur.com/nmBdI61.png">
+      </button>
+    </div>
+  </div>
+
+
+  <div id="Middle" class="MBox">
+
+    <div class="picture-mbox1">
+
+      <div class="pic-slide fade">
+        <div class="Mtext1"> Owner </div>
+        <img class="pic1" src="https://i.imgur.com/SeyayGp.jpeg" style="width: 259px;">
+        <a class="previous" onclick="plusSlides(-1)">&#10094;</a>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>            
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="title">(Remedios R. Carandang) 
+          <p class="description">
+            The person who started the Aling Meding's Special Kakanin. She started the business in year 1973 when she was walking by the market and notices that kakanin are profitable.
+          </p>
+        </div>
+      </div> 
+      
+      <div class="pic-slide fade">
+        <div class="Mtext1"> Owner </div>
+        <img class="pic2" src="https://i.imgur.com/QsuRyc9.jpeg" style="width: 259px;">
+        <a class="previous" onclick="plusSlides(-1)">&#10094;</a>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>            
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="title">(Luzviminda C. Andaya) 
+          <p class="description">
+            She is Luzviminda a.k.a Luz, daughter of Aling Meding. She inherited the business when she's in her mid 20s.  
+          </p>
+        </div>
+      </div>
+
+      <div class="pic-slide fade">
+        <div class="Mtext1"> Owner </div>
+        <img class="pic3" src="https://i.imgur.com/dam5H1W.jpeg" style="width: 259px;"s>
+        <a class="previous" onclick="plusSlides(-1)">&#10094;</a>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>            
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="title">(Florence A. Davantes & Ericsson Davantes) 
+          <p class="description">
+            Florence is the third generation owner with her husband Ericsson Davantes, she inherited the business and branch out the business to marketplaces in Lipa and Batangas City. Currently the branch in batangas is closed. 
+          </p>
+        </div>
+      </div>
+    </div> 
+
+    <div class="picture-mbox2">
+
+      <div class="pic-slide2 fade">
+        <div class="Mtext2"> Best Seller Products </div>
+        <img class="pic4" src=https://i.imgur.com/qlfBPeL.jpg" style="width: 259px;">
+        <a class="previous2" onclick="plusSlides2(-1)">&#10094;</a>
+        <span class="dot2" onclick="currentSlide2(1)"></span>
+        <span class="dot2" onclick="currentSlide2(2)"></span>            
+        <span class="dot2" onclick="currentSlide2(3)"></span>
+        <a class="next2" onclick="plusSlides2(1)">&#10095;</a>
+        <div class="title2">(Special Puto) 
+          <p class="description2">
+            The person who started the Aling Meding's Special Kakanin. She started the business in year 1973 when she was walking by the market and notices that kakanin are profitable.
+          </p>
+        </div>
+      </div> 
+      
+      <div class="pic-slide2 fade">
+        <div class="Mtext2"> Best Seller Products </div>
+        <img class="pic2-1" src="https://i.imgur.com/E68aPeZ.jpg" style="width: 259px;">
+        <a class="previous2" onclick="plusSlides2(-1)">&#10094;</a>
+        <span class="dot2" onclick="currentSlide2(1)"></span>
+        <span class="dot2" onclick="currentSlide2(2)"></span>            
+        <span class="dot2" onclick="currentSlide2(3)"></span>
+        <a class="next2" onclick="plusSlides2(1)">&#10095;</a>
+        <div class="title2">(Bibingkang Itlog/ Bibingkang Tanauan) 
+          <p class="description2">
+            She is Luzviminda a.k.a Luz, daughter of Aling Meding. She inherited the business when her salary from working nurse is insufficient to provide for her family of 8.  
+          </p>
+        </div>
+      </div>
+
+      <div class="pic-slide2 fade">
+        <div class="Mtext2"> Best Seller Products </div>
+        <img class="pic3-1" src="https://i.imgur.com/VD2CjwT.jpg" style="width: 259px;"s>
+        <a class="previous2" onclick="plusSlides2(-1)">&#10094;</a>
+        <span class="dot2" onclick="currentSlide2(1)"></span>
+        <span class="dot2" onclick="currentSlide2(2)"></span>            
+        <span class="dot2" onclick="currentSlide2(3)"></span>
+        <a class="next2" onclick="plusSlides2(1)">&#10095;</a>
+        <div class="title2">(Biko/Sinukmani) 
+          <p class="description2">
+            Florence is the third generation owner with her husband Ericsson Davantes, she inherited the business and branch out the business to marketplaces in Lipa and Batangas City. Currently the branch in batangas is closed. 
+          </p>
+        </div>
+      </div>
+    </div> 
+
+    <div class="picture-mbox3">
+
+      <div class="pic-slide3 fade">
+        <div class="Mtext2"> Branches </div>
+        <img class="pic4" src="https://i.imgur.com/HYtbusb.jpg" style="width: 259px;">
+        <a class="previous3" onclick="plusSlides3(-1)">&#10094;</a>
+        <span class="dot3" onclick="currentSlide3(1)"></span>
+        <span class="dot3" onclick="currentSlide3(2)"></span>            
+        <span class="dot3" onclick="currentSlide3(3)"></span>
+        <a class="next3" onclick="plusSlides3(1)">&#10095;</a>
+        <div class="title3">(Tanauan City, Batangas) 
+          <p class="description3">
+            Beside Victory Mall, open every tuesday to sunday from 7am to 1pm.
+          </p>
+        </div>
+      </div> 
+      
+      <div class="pic-slide3 fade">
+        <div class="Mtext2"> Branches </div>
+        <img class="pic2-1" src="https://i.imgur.com/0qflf7t.jpeg" style="width: 259px;">
+        <a class="previous3" onclick="plusSlides3(-1)">&#10094;</a>
+        <span class="dot3" onclick="currentSlide3(1)"></span>
+        <span class="dot3" onclick="currentSlide3(2)"></span>            
+        <span class="dot3" onclick="currentSlide3(3)"></span>
+        <a class="next3" onclick="plusSlides3(1)">&#10095;</a>
+        <div class="title3">(Lipa City, Batangas) 
+          <p class="description3">
+            There are multiple stores in Lipa City. Open every monday to sunday from 6am to 3pm.
+          </p>
+        </div>
+      </div>
+
+      <div class="pic-slide3 fade">
+        <div class="Mtext2"> Branches </div>
+        <img class="pic3-1" src="https://i.imgur.com/VaqGhS2.jpeg" style="width: 259px;"s>
+        <a class="previous3" onclick="plusSlides3(-1)">&#10094;</a>
+        <span class="dot3" onclick="currentSlide3(1)"></span>
+        <span class="dot3" onclick="currentSlide3(2)"></span>            
+        <span class="dot3" onclick="currentSlide3(3)"></span>
+        <a class="next3" onclick="plusSlides3(1)">&#10095;</a>
+        <div class="title3">(Batangas City) 
+          <p class="description3">
+            Currently closed. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div id="Bottom" class="BBox">
+      <img class="BLogo" src="https://i.imgur.com/LwlehUO.png" alt="">
+    </div>
+
+
+    <script>
+      let slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("pic-slide");
+        let dots =document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++){
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++){
+          dots[i].className = dots[i].className.replace(" active","");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+      }
+    </script>
+
+    <script>
+      let slideIndex2 = 1;
+      showSlides2(slideIndex2);
+
+      function plusSlides2(n) {
+        showSlides2(slideIndex2 += n);
+      }
+
+      function currentSlide2(n) {
+        showSlides2(slideIndex2 = n);
+      }
+
+      function showSlides2(n) {
+        let i;
+        let slides = document.getElementsByClassName("pic-slide2");
+        let dots =document.getElementsByClassName("dot2");
+        if (n > slides.length) {slideIndex2 = 1}
+        if (n < 1) {slideIndex2 = slides.length}
+        for (i = 0; i < slides.length; i++){
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++){
+          dots[i].className = dots[i].className.replace(" active","");
+        }
+          slides[slideIndex2-1].style.display = "block";
+          dots[slideIndex2-1].className += " active";
+        }
+    </script>
+
+    <script>
+      let slideIndex3 = 1;
+      showSlides3(slideIndex3);
+
+      function plusSlides3(n) {
+        showSlides3(slideIndex3 += n);
+      }
+
+      function currentSlide3(n) {
+        showSlides3(slideIndex3 = n);
+      }
+
+      function showSlides3(n) {
+        let i;
+        let slides = document.getElementsByClassName("pic-slide3");
+        let dots =document.getElementsByClassName("dot3");
+        if (n > slides.length) {slideIndex3 = 1}
+        if (n < 1) {slideIndex3 = slides.length}
+        for (i = 0; i < slides.length; i++){
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++){
+          dots[i].className = dots[i].className.replace(" active","");
+        }
+          slides[slideIndex3-1].style.display = "block";
+          dots[slideIndex3-1].className += " active";
+        }
+    </script>
+</body>
+</html>
